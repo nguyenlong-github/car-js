@@ -46,16 +46,20 @@ class Car{
         if(Math.abs(this.speed) < this.friction){
             this.speed = 0;
         }
-        // left
-        if(this.controls.left){
-            this.angle += 0.03;
-        }
 
-        // right
-        if(this.controls.right){
-            this.angle -= 0.03;
+        // Neu speed = 0 thi se khong re trai re phai duoc
+        if(this.speed != 0){
+            const flip = this.speed > 0 ? 1 : -1;
+            // * voi flip de dao nguoc trai phai
+            // left
+            if(this.controls.left){
+                this.angle += 0.03 * flip;
+            }
+            // right
+            if(this.controls.right){
+                this.angle -= 0.03 * flip;
+            }
         }
-
         //
         this.x -= Math.sin(this.angle) * this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
